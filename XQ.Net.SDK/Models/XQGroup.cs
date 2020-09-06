@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace XQ.Net.SDK.Models
 {
-    public class XQGroup:BaseModel
+    public class XQGroup : BaseModel
     {
-        public XQGroup(string groupid,XQAPI api) : base(api)
+        public XQGroup(string groupid, XQAPI api) : base(api)
         {
             Id = groupid;
-            
         }
+
         public string Id { get; set; }
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace XQ.Net.SDK.Models
         /// </summary>
         /// <param name="robotQQ">收到消息的机器人</param>
         /// <param name="msg"></param>
-        public void SendMessage(string robotQQ,string msg)
+        public void SendMessage(string robotQQ, string msg)
         {
             XQAPI.SendGroupMessage(robotQQ, this.Id, msg);
         }
@@ -33,7 +33,7 @@ namespace XQ.Net.SDK.Models
         /// <param name="blacklist">是否加入黑名单</param>
         public void KickMember(string robotQQ, string targetQQ, bool blacklist = false)
         {
-            XQAPI.KickGroupMember(robotQQ, Id, targetQQ,blacklist);
+            XQAPI.KickGroupMember(robotQQ, Id, targetQQ, blacklist);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace XQ.Net.SDK.Models
         /// <param name="robotQQ"></param>
         /// <param name="targetQQ"></param>
         /// <param name="seconds"></param>
-        public void ShutUpMember(string robotQQ, string targetQQ,int seconds)
+        public void ShutUpMember(string robotQQ, string targetQQ, int seconds)
         {
             XQAPI.ShutUpMember(robotQQ, this.Id, targetQQ, seconds);
         }
@@ -58,7 +58,7 @@ namespace XQ.Net.SDK.Models
         /// <param name="robotQQ"></param>
         public void ShutUpAll(string robotQQ)
         {
-            XQAPI.ShutUpMember(robotQQ, this.Id, "",1);
+            XQAPI.ShutUpMember(robotQQ, this.Id, "", 1);
         }
 
         /// <summary>
@@ -67,12 +67,12 @@ namespace XQ.Net.SDK.Models
         /// <param name="robotQQ"></param>
         public void UnShutUpAll(string robotQQ)
         {
-            XQAPI.ShutUpMember(robotQQ, this.Id,"" ,0);
+            XQAPI.ShutUpMember(robotQQ, this.Id, "", 0);
         }
 
         public GroupInfo ToGroupInfo(string robotQQ)
         {
-            return new GroupInfo(robotQQ,Id) ;
+            return new GroupInfo(robotQQ, Id);
         }
     }
 }
